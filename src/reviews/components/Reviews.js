@@ -28,14 +28,28 @@ export default class Reviews extends Component {
   }
 
   render() {
-    const {isLoadingReviews} = this.state
+    const {isLoadingReviews, reviews} = this.state
 
     return (
       <div className="reviews-container">
         <NewReviewForm addNewReview={this.handleAddNewReview} />
 
-        {isLoadingReviews ? 'Loading...' : <span>No reviews yet</span>}
+        {isLoadingReviews ? 'Loading...' : <List reviews={reviews} />}
       </div>
     )
   }
+}
+
+const List = ({reviews}) => {
+  const keysCollection = Object.keys(reviews)
+
+  if (keysCollection.length === 0) {
+    return <span>No reviews yet</span>
+  }
+
+  keysCollection.sort()
+
+  return keysCollection.map(reviewId => {
+    return <div key={reviewId}>{reviewId}</div>
+  })
 }
