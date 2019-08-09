@@ -1,0 +1,26 @@
+.review-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-item-container .user-avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+}
+
+.review-item-container .review-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-item-container .review-details .name {
+  font-weight: bold;
+}
+
+.review-item-container .review-details .comment {
+
+}

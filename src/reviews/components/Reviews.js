@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import NewReviewForm from './NewReviewForm'
+import ReviewItem from './ReviewItem'
 import {fetchReviews, addNewReview} from '../../services/api.js'
 import '../styles/Reviews.css'
 
@@ -50,6 +51,6 @@ const List = ({reviews}) => {
   keysCollection.sort()
 
   return keysCollection.map(reviewId => {
-    return <div key={reviewId}>{reviewId}</div>
+    return <ReviewItem key={reviewId} review={reviews[reviewId]} />
   })
 }
