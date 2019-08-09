@@ -1,0 +1,10 @@
+.navbar-container {
+  font-family: 'Red Hat Display', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4b688d;
+  height: 80px;
+  font-size: 30px;
+  color: white;
+}
