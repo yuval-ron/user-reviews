@@ -21,18 +21,14 @@ export default class Reviews extends Component {
   }
 
   handleAddNewReview = (review) => {
-    this.setState({isLoadingReviews: true})
-
     addNewReview(review).then((reviews) => {
-      this.setState({reviews, isLoadingReviews: false, reviewInEdit: null})
+      this.setState({reviews, reviewInEdit: null})
     })
   }
 
   handleDeleteReview = (reviewId) => {
-    this.setState({isLoadingReviews: true})
-
     deleteReview(reviewId).then((reviews) => {
-      this.setState({reviews, isLoadingReviews: false})
+      this.setState({reviews})
     })
   }
 

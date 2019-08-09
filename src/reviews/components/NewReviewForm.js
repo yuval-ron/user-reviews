@@ -13,7 +13,6 @@ export default class NewReviewForm extends Component {
     const {review} = this.props
 
     if (review) {
-      console.log('NewReviewForm.js review', review)
       const {name, comment, id} = review
 
       this.setState({name, comment, id})

@@ -13,8 +13,6 @@ export const addNewReview = (review) => {
   return new Promise((resolve, reject) => {
     let reviewId = (new Date).toISOString()
 
-    console.log('api.js review', review)
-
     if (!review.id) {
       review = {...review, id: reviewId}
     } else {
