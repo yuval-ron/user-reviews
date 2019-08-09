@@ -5,6 +5,19 @@
   /*width: 90%;*/
   margin: 10px;
   border: 1px solid #ccc;
+  position: relative;
+}
+
+.review-item-container .controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  padding: 10px;
+}
+
+.review-item-container .controls .button {
+  margin: 0 10px;
 }
 
 .review-item-container .user-avatar {
@@ -27,6 +40,10 @@
 .review-item-container .review-details .name {
   font-weight: bold;
   font-size: 20px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .review-item-container .review-details .comment {

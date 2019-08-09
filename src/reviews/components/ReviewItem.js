@@ -23,6 +23,10 @@ export default class ReviewItem extends Component {
 
     return (
       <div className="review-item-container">
+        <div className="controls">
+          <div className="button">Edit</div>
+          <div className="button">Delete</div>
+        </div>
         <div className="user-avatar" style={avatarStyle}></div>
         <div className="review-details">
           <div className="name">{name}</div>
