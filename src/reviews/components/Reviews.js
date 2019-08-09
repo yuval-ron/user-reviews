@@ -7,9 +7,9 @@ export default class Reviews extends Component {
   render() {
     return (
       <div className="reviews-container">
-        <span>No reviews yet</span>
-
         <NewReviewForm />
+
+        <span>No reviews yet</span>
       </div>
     )
   }

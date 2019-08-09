@@ -1,3 +1,24 @@
 .new-review-form-container {
   padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #eef1f3;
+}
+
+.new-review-form-container .input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.new-review-form-container .submit-button {
+   background-color: #3379b7;
+   color: white;
+   font-weight: bold;
+   width: 100px;
+   padding: 10px;
 }
