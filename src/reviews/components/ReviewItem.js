@@ -10,10 +10,13 @@ export default class ReviewItem extends Component {
   }
 
   componentDidMount() {
-    imgGen().then(avatarURL => {
-      console.log('ReviewItem.js avatarURL', avatarURL)
-      this.setState({avatarURL})
-    });
+    imgGen().then(avatarURL => this.setState({avatarURL}));
+  }
+
+  handleDeleteButtonClick = () => {
+    const {deleteReview, review} = this.props
+
+    deleteReview(review.id)
   }
 
   render() {
@@ -25,7 +28,7 @@ export default class ReviewItem extends Component {
       <div className="review-item-container">
         <div className="controls">
           <div className="button">Edit</div>
-          <div className="button">Delete</div>
+          <div className="button" onClick={this.handleDeleteButtonClick}>Delete</div>
         </div>
         <div className="user-avatar" style={avatarStyle}></div>
         <div className="review-details">

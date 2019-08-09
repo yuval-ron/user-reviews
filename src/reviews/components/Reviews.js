@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import NewReviewForm from './NewReviewForm'
 import ReviewItem from './ReviewItem'
-import {fetchReviews, addNewReview} from '../../services/api.js'
+import {fetchReviews, addNewReview, deleteReview} from '../../services/api.js'
 import '../styles/Reviews.css'
 
 export default class Reviews extends Component {
@@ -24,7 +24,14 @@ export default class Reviews extends Component {
 
     addNewReview(review).then((reviews) => {
       this.setState({reviews, isLoadingReviews: false})
-      console.log('SUCCESS!!!!')
+    })
+  }
+
+  handleDeleteReview = (reviewId) => {
+    this.setState({isLoadingReviews: true})
+
+    deleteReview(reviewId).then((reviews) => {
+      this.setState({reviews, isLoadingReviews: false})
     })
   }
 
@@ -35,13 +42,16 @@ export default class Reviews extends Component {
       <div className="reviews-container">
         <NewReviewForm addNewReview={this.handleAddNewReview} />
 
-        {isLoadingReviews ? 'Loading...' : <List reviews={reviews} />}
+        {isLoadingReviews ?
+          'Loading...' :
+          <List reviews={reviews} deleteReview={this.handleDeleteReview} />
+        }
       </div>
     )
   }
 }
 
-const List = ({reviews}) => {
+const List = ({reviews, deleteReview}) => {
   const keysCollection = Object.keys(reviews)
 
   if (keysCollection.length === 0) {
@@ -51,6 +61,6 @@ const List = ({reviews}) => {
   keysCollection.sort()
 
   return keysCollection.map(reviewId => {
-    return <ReviewItem key={reviewId} review={reviews[reviewId]} />
+    return <ReviewItem key={reviewId} review={reviews[reviewId]} deleteReview={deleteReview} />
   })
 }

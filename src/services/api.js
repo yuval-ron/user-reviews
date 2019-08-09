@@ -26,6 +26,21 @@ export const addNewReview = (review) => {
   })
 }
 
+export const deleteReview = (reviewId) => {
+  return new Promise((resolve, reject) => {
+    const allReviews = getAllReviews()
+
+    Reflect.deleteProperty(allReviews, reviewId)
+
+    setAllReviews(allReviews)
+
+    // Faking real request delay
+    setTimeout(() => {
+      return resolve(allReviews)
+    }, 500)
+  })
+}
+
 const getAllReviews = () => {
   const allReviews = localStorage.getItem(REVIEWS_STORAGE_KEY) || '{}'
 
