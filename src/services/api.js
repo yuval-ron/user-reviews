@@ -11,8 +11,16 @@ export const fetchReviews = () => {
 
 export const addNewReview = (review) => {
   return new Promise((resolve, reject) => {
-    const reviewId = (new Date).toISOString()
-    review = {...review, id: reviewId}
+    let reviewId = (new Date).toISOString()
+
+    console.log('api.js review', review)
+
+    if (!review.id) {
+      review = {...review, id: reviewId}
+    } else {
+      reviewId = review.id
+    }
+
     const allReviews = getAllReviews()
 
     allReviews[reviewId] = review

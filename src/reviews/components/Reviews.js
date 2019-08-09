@@ -8,7 +8,8 @@ import '../styles/Reviews.css'
 export default class Reviews extends Component {
   state = {
     reviews: {},
-    isLoadingReviews: false
+    isLoadingReviews: false,
+    reviewInEdit: null
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ export default class Reviews extends Component {
     this.setState({isLoadingReviews: true})
 
     addNewReview(review).then((reviews) => {
-      this.setState({reviews, isLoadingReviews: false})
+      this.setState({reviews, isLoadingReviews: false, reviewInEdit: null})
     })
   }
 
@@ -35,23 +36,39 @@ export default class Reviews extends Component {
     })
   }
 
+  handleEditReview = (review) => {
+    this.setState({reviewInEdit: review})
+  }
+
   render() {
-    const {isLoadingReviews, reviews} = this.state
+    const {isLoadingReviews, reviews, reviewInEdit} = this.state
 
     return (
       <div className="reviews-container">
-        <NewReviewForm addNewReview={this.handleAddNewReview} />
-
         {isLoadingReviews ?
           'Loading...' :
-          <List reviews={reviews} deleteReview={this.handleDeleteReview} />
+          <List
+            reviews={reviews}
+            deleteReview={this.handleDeleteReview}
+            editReview={this.handleEditReview}
+            addNewReview={this.handleAddNewReview}
+            reviewInEdit={reviewInEdit}
+          />
         }
+
+        {!reviewInEdit && <NewReviewForm addNewReview={this.handleAddNewReview} />}
       </div>
     )
   }
 }
 
-const List = ({reviews, deleteReview}) => {
+const List = ({
+  reviews,
+  deleteReview,
+  editReview,
+  addNewReview,
+  reviewInEdit
+}) => {
   const keysCollection = Object.keys(reviews)
 
   if (keysCollection.length === 0) {
@@ -60,7 +77,21 @@ const List = ({reviews, deleteReview}) => {
 
   keysCollection.sort()
 
+
   return keysCollection.map(reviewId => {
-    return <ReviewItem key={reviewId} review={reviews[reviewId]} deleteReview={deleteReview} />
+    const review = reviews[reviewId]
+
+    if (reviewInEdit && reviewInEdit === reviewId) {
+      return <NewReviewForm key={reviewId} addNewReview={addNewReview} review={review} />
+    }
+
+    return (
+      <ReviewItem
+        key={reviewId}
+        review={review}
+        deleteReview={deleteReview}
+        editReview={editReview}
+      />
+    )
   })
 }

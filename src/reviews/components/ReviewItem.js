@@ -19,15 +19,21 @@ export default class ReviewItem extends Component {
     deleteReview(review.id)
   }
 
+  handleEditButtonClick = () => {
+    const {editReview, review} = this.props
+
+    editReview(review.id)
+  }
+
   render() {
-    const {review: {name, comment}} = this.props
+    const {review: {name, comment}, editReview} = this.props
     const {avatarURL} = this.state
     const avatarStyle = {backgroundImage: `url(${avatarURL})`}
 
     return (
       <div className="review-item-container">
         <div className="controls">
-          <div className="button">Edit</div>
+          <div className="button" onClick={this.handleEditButtonClick}>Edit</div>
           <div className="button" onClick={this.handleDeleteButtonClick}>Delete</div>
         </div>
         <div className="user-avatar" style={avatarStyle}></div>
