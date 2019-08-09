@@ -1,5 +1,14 @@
 const REVIEWS_STORAGE_KEY = 'reviews'
 
+export const fetchReviews = () => {
+  return new Promise((resolve, reject) => {
+    // Faking real request delay
+    setTimeout(() => {
+      return resolve(getAllReviews())
+    }, 500)
+  })
+}
+
 export const addNewReview = (review) => {
   return new Promise((resolve, reject) => {
     const reviewId = (new Date).toISOString()
@@ -9,7 +18,11 @@ export const addNewReview = (review) => {
     allReviews[reviewId] = review
 
     setAllReviews(allReviews)
-    return resolve(allReviews)
+
+    // Faking real request delay
+    setTimeout(() => {
+      return resolve(allReviews)
+    }, 500)
   })
 }
 
